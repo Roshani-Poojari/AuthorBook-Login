@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AuthorBookAuthorizedMVC.Models.Book>
+
+@{
+    ViewBag.Title = "GetAllBooks";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Books List</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Book Title")
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayName("Author's Name")
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Genre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Author.Name)
+        </td>
+    </tr>
+}
+
+</table>
+@if (!User.Identity.IsAuthenticated) { 
+<div>
+    @Html.ActionLink("Login Now", "Login","Author",new { @class = "btn btn-outline-dark btn-lg " })<br/><br />
+    @Html.ActionLink("New Author? Click here to register", "Register", null, new { @class = "btn btn-outline-dark btn-lg" })
+
+</div>
+}
